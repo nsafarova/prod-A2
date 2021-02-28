@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="spring-boot-first-web-application-git" options="-parameters" />
+      <module name="spring-boot-first-web-application-git" options="" />
     </option>
   </component>
 </project>
