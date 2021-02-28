@@ -5,28 +5,25 @@ import java.util.Date;
 import javax.validation.constraints.Size;
 
 public class Todo {
-
     private int id;
-
     private String user;
-
-    @Size(min = 10, message = "Enter atleast 10 Characters.")
-    private final ThreadLocal<String> desc = new ThreadLocal<String>();
+    
+    @Size(min=10, message="Enter at least 10 Characters...")
+    private String desc;
 
     private Date targetDate;
-
     private boolean isDone;
 
     public Todo() {
-        super();
+    		super();
     }
-
+    
     public Todo(int id, String user, String desc, Date targetDate,
             boolean isDone) {
         super();
         this.id = id;
         this.user = user;
-        this.desc.set(desc);
+        this.desc = desc;
         this.targetDate = targetDate;
         this.isDone = isDone;
     }
@@ -48,11 +45,11 @@ public class Todo {
     }
 
     public String getDesc() {
-        return desc.get();
+        return desc;
     }
 
     public void setDesc(String desc) {
-        this.desc.set(desc);
+        this.desc = desc;
     }
 
     public Date getTargetDate() {
@@ -101,7 +98,7 @@ public class Todo {
     public String toString() {
         return String.format(
                 "Todo [id=%s, user=%s, desc=%s, targetDate=%s, isDone=%s]", id,
-                user, desc.get(), targetDate, isDone);
+                user, desc, targetDate, isDone);
     }
 
 }
