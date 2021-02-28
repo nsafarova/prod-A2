@@ -8,15 +8,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
-	//Create User - in28Minutes/dummy
-	@Autowired
-    public void configureGlobalSecurity(AuthenticationManagerBuilder auth)
-            throws Exception {
-        auth.inMemoryAuthentication().withUser("in28Minutes").password("dummy")
-                .roles("USER", "ADMIN");
+    //Create User - in28Minutes/dummy
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.inMemoryAuthentication()
+                .withUser("user").password("{noop}user").roles("USER")
+                .and()
+                .withUser("admin").password("{noop}admin").roles("ADMIN");
+
     }
-	
-	@Override
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/login").permitAll()
                 .antMatchers("/", "/*todo*/**").access("hasRole('USER')").and()
