@@ -26,6 +26,9 @@ public class TodoController {
 
     @Autowired
     private TodoService service;
+    private ModelMap model;
+    private Todo todo;
+    private BindingResult result;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -49,6 +52,9 @@ public class TodoController {
 
     @RequestMapping(value = "/add-todo", method = RequestMethod.POST)
     public String addTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
+        this.model = model;
+        this.todo = todo;
+        this.result = result;
 
         if (result.hasErrors()) {
             return "todo";

@@ -11,7 +11,7 @@ public class Todo {
     private String user;
 
     @Size(min = 10, message = "Enter atleast 10 Characters.")
-    private String desc;
+    private final ThreadLocal<String> desc = new ThreadLocal<String>();
 
     private Date targetDate;
 
@@ -26,7 +26,7 @@ public class Todo {
         super();
         this.id = id;
         this.user = user;
-        this.desc = desc;
+        this.desc.set(desc);
         this.targetDate = targetDate;
         this.isDone = isDone;
     }
@@ -48,11 +48,11 @@ public class Todo {
     }
 
     public String getDesc() {
-        return desc;
+        return desc.get();
     }
 
     public void setDesc(String desc) {
-        this.desc = desc;
+        this.desc.set(desc);
     }
 
     public Date getTargetDate() {
@@ -101,7 +101,7 @@ public class Todo {
     public String toString() {
         return String.format(
                 "Todo [id=%s, user=%s, desc=%s, targetDate=%s, isDone=%s]", id,
-                user, desc, targetDate, isDone);
+                user, desc.get(), targetDate, isDone);
     }
 
 }
