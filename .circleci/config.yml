@@ -5,11 +5,11 @@ jobs:
     docker:
       - image: circleci/openjdk:11.0.1-jdk
 
-    working_directory: ~/prod-A2
+    working_directory: ~/prod-a2
 
     steps:
       - checkout
 
       - run: mvn clean package
 
-      - run: mvn clean compile jib:build -Djib.to.auth.username=$DOCKER_USER -Djib.to.auth.password=$DOCKER_PASS -Dimage=nsafarova/prod-A2:$CIRCLE_BUILD_NUM
+      - run: mvn clean compile jib:build -Djib.to.auth.username=$DOCKER_USER -Djib.to.auth.password=$DOCKER_PASS -Dimage=nsafarova/prod-a2:$CIRCLE_BUILD_NUM
